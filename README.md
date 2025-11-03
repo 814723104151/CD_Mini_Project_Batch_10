@@ -93,27 +93,28 @@ The Predictive Parser works in the following sequential components:
 6. **Output:** Shows step-by-step parsing actions and final syntax validation.
 
 ---
-
 ## 10. Sample Simulation Steps
-Input: `(a+b)*c`  
 
-Preprocessed Input: `(i+i)*i$`  
-Initial Stack: `$E`  
+**Input:** `(a+b)*c`  
 
-| Stack       | Input     | Action                  |
-|------------|-----------|-----------------------|
-| $E         | (i+i)*i$ | E → T X               |
-| $X T F     | (i+i)*i$ | F → (E)               |
-| $X Y E )   | i+i)*i$  | E → T X               |
-| $X Y X Y F | i+i)*i$  | F → i                 |
-| $X Y       | +i)*i$   | X → + T X             |
-| $X T F     | i)*i$    | F → i                 |
-| $X         | )*i$     | Match ')'             |
-| $Y F *     | *i$      | Match '*' and F → i   |
-| $           | $        | Parsing complete       |
+**Preprocessed Input:** `(i+i)*i$`  
+**Initial Stack:** `$E`  
+
+| Stack       | Input     | Action                    |
+|------------|-----------|---------------------------|
+| $E         | (i+i)*i$ | E → T X                  |
+| $X T F     | (i+i)*i$ | F → (E)                  |
+| $X Y E )   | i+i)*i$  | E → T X                  |
+| $X Y X Y F | i+i)*i$  | F → i                     |
+| $X Y       | +i)*i$   | X → + T X                |
+| $X T F     | i)*i$    | F → i                     |
+| $X         | )*i$     | X → ε                     |
+| $Y F *     | *i$      | Y → * F Y, F → i          |
+| $           | $        | Parsing complete          |
 
 **Final Output:**  
 ✅ Expression is syntactically correct.
+
 ---
 
 ## 11. Advantages
