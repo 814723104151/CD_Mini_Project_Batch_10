@@ -100,48 +100,20 @@ Input: `(a+b)*c`
 Preprocessed Input: `(i+i)*i$`  
 Initial Stack: `$E`  
 
-| Stack       | Input     | Action            |
-|------------|-----------|-----------------|
-| $E         | (i+i)*i$ | E → T X         |
-| $X T       | (i+i)*i$ | T → F Y         |
-| $X Y F     | (i+i)*i$ | F → (E)         |
-| $X Y (E)   | (i+i)*i$ | Match '('       |
-| $X Y E )   | i+i)*i$  | E → T X         |
-| $X Y X T   | i+i)*i$  | T → F Y         |
-| $X Y X Y F | i+i)*i$  | F → i           |
-| $X Y X Y   | i+i)*i$  | Match 'i'       |
-| $X Y X     | +i)*i$   | Y → ε           |
-| $X Y       | +i)*i$   | X → + T X       |
-| $X T +     | +i)*i$   | Match '+'       |
-| $X T       | i)*i$    | T → F Y         |
-| $X Y F     | i)*i$    | F → i           |
-| $X Y       | i)*i$    | Match 'i'       |
-| $X         | )*i$     | Y → ε           |
-| $X         | )*i$     | Match ')'       |
-| $           | *i$      | X → ε           |
-| $Y         | *i$      | Y → * F Y       |
-| $Y F *     | *i$      | Match '*'       |
-| $Y F       | i$       | F → i           |
-| $Y         | i$       | Match 'i'       |
-| $           | $        | Y → ε           |
+| Stack       | Input     | Action                  |
+|------------|-----------|-----------------------|
+| $E         | (i+i)*i$ | E → T X               |
+| $X T F     | (i+i)*i$ | F → (E)               |
+| $X Y E )   | i+i)*i$  | E → T X               |
+| $X Y X Y F | i+i)*i$  | F → i                 |
+| $X Y       | +i)*i$   | X → + T X             |
+| $X T F     | i)*i$    | F → i                 |
+| $X         | )*i$     | Match ')'             |
+| $Y F *     | *i$      | Match '*' and F → i   |
+| $           | $        | Parsing complete       |
 
 **Final Output:**  
 ✅ Expression is syntactically correct.
-
-
-## 10. Sample Simulation Steps
-Input: `(a+b)*c`  
-
-| Stack  | Input    | Action          |
-|--------|---------|----------------|
-| $E     | (i+i)*i$ | E → T X         |
-| $X T F | (i+i)*i$ | F → (E)         |
-| $X T (E) | (i+i)*i$ | Match '('       |
-| ...    | ...     | ...             |
-
-Final Output:  
-**Expression is syntactically correct.**
-
 ---
 
 ## 11. Advantages
