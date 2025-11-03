@@ -82,7 +82,7 @@ This provides a **deterministic and efficient parser** suitable for compilers an
 
 ---
 
-## 8. System Architecture (Text Version)
+## 8. System Architecture 
 The Predictive Parser works in the following sequential components:
 
 1. **Input Expression:** Accepts arithmetic expressions from the user.  
@@ -94,18 +94,17 @@ The Predictive Parser works in the following sequential components:
 
 ---
 
-## 9. Input Grammar
-Grammar for arithmetic expressions:
+Input: `(a+b)*c`  
 
-E → T X
-X → + T X | - T X | ε
-T → F Y
-Y → * F Y | / F Y | ε
-F → i | ( E )
+| Stack  | Input    | Action          |
+|--------|---------|----------------|
+| $E     | (i+i)*i$ | E → T X         |
+| $X T F | (i+i)*i$ | F → (E)         |
+| $X T (E) | (i+i)*i$ | Match '('       |
+| ...    | ...     | ...             |
 
-- `i` represents a number or identifier.  
-- `ε` represents an empty production (epsilon).
-
+Final Output:  
+**Expression is syntactically correct.**
 ---
 
 ## 10. Sample Simulation Steps
